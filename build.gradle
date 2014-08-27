@@ -23,11 +23,11 @@ allprojects { currProject ->
     }
 }
 
-subprojects {
+subprojects { project ->
     apply plugin: 'java'
 
     dependencies {
-        compile 'org.slf4j:slf4j-api:1.7.7'
+        compile "org.slf4j:slf4j-api:$slf4jVersion"
 
         testCompile 'org.mockito:mockito-core:1.9.5',
                 'junit:junit:4.12-beta-1'
