@@ -1,3 +1,22 @@
 task wrapper(type: Wrapper) {
     gradleVersion = '3.4.1'
 }
+
+allprojects { currProject ->
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        jcenter()
+    }
+}
+
+subprojects { project ->
+    apply plugin: 'java'
+
+    dependencies {
+        compile "org.slf4j:slf4j-api:1.7.25"
+
+        testCompile 'org.mockito:mockito-core:2.7.18',
+                'junit:junit:4.12'
+    }
+}
