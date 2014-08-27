@@ -1,2 +1,4 @@
 rootProject.name = 'sbs-gradle'
 
+include ':common'
+
