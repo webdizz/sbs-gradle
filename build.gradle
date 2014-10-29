@@ -8,6 +8,11 @@ allprojects { currProject ->
         mavenCentral()
         jcenter()
     }
+
+}
+
+task printParam {
+    doLast { println givenParameter }
 }
 
 subprojects { project ->
