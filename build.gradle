@@ -15,8 +15,10 @@ task printParam {
     doLast { println givenParameter }
 }
 
+
 subprojects { project ->
     apply plugin: 'java'
+    apply from: file("${rootProject.projectDir}/gradle/integTest.gradle")
 
     dependencies {
         compile "org.slf4j:slf4j-api:$slf4jVersion"
@@ -24,4 +26,6 @@ subprojects { project ->
         testCompile 'org.mockito:mockito-core:2.7.18',
                 'junit:junit:4.12'
     }
+
+
 }
