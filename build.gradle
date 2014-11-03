@@ -15,6 +15,7 @@ task printParam {
     doLast { println givenParameter }
 }
 
+printParam.dependsOn 'help'
 
 subprojects { project ->
     apply plugin: 'java'
