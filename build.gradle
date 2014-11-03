@@ -21,7 +21,6 @@ allprojects { currProject ->
         mavenCentral()
         jcenter()
     }
-
 }
 
 task printParameter {
@@ -29,6 +28,17 @@ task printParameter {
 }
 
 printParameter.dependsOn 'help'
+
+tasks.addRule('Check correctness of running tests'){ String taskName ->
+    gradle.taskGraph.whenReady{
+        Map<String, String> args = gradle.startParameter.systemPropertiesArgs
+        gradle.taskGraph.allTasks.each { Task task ->
+            if (task.name.contains('integTest') && !args.containsKey('profile')) {
+                throw new org.gradle.api.tasks.StopExecutionException("Profile was not specified to run tests (-Dprofile=ci).")
+            }
+        }
+    }
+}
 
 subprojects { project ->
     apply plugin: 'java'
