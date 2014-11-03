@@ -21,6 +21,18 @@ subprojects { project ->
     apply plugin: 'java'
     apply from: file("${rootProject.projectDir}/gradle/integTest.gradle")
 
+    task areTestsExist {
+        if (file("${projectDir}/src/test/java")
+              .listFiles()
+              .findAll{it!=null}
+              .isEmpty()) {
+            println 'Test directory is empty'
+        } else {
+            println 'Test directory is not empty, will execute tests'
+        }
+    }
+    test.mustRunAfter areTestsExist
+
     dependencies {
         compile "org.slf4j:slf4j-api:$slf4jVersion"
 
