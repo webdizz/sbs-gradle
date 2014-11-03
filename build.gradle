@@ -28,6 +28,7 @@ task printParameter {
     println givenParameter
 }
 
+printParameter.dependsOn 'help'
 
 subprojects { project ->
     apply plugin: 'java'
