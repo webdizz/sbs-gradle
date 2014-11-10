@@ -1,0 +1,12 @@
+subprojects {
+    apply plugin: 'findbugs'
+    findbugs {
+        ignoreFailures = true
+        toolVersion = '3.0.0'
+    }
+
+    apply plugin: 'pmd'
+    pmd {
+        toolVersion = '5.1.3'
+    }
+}
