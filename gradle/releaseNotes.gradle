@@ -13,6 +13,21 @@ tasks.create(name: 'copyTask', type: org.gradle.api.tasks.Copy) {
     rename { String fileName ->
         fileName.replace('.tmpl', '')
     }
+
+    ext.changesFile = file('changes.txt')
+    ext.bugs = []
+    ext.features = []
+    changesFile.eachLine { String line ->
+        String bugSymbol = '#bug:'
+        String featureSymbol = '#feature:'
+        if (line.contains(bugSymbol)) {
+            bugs << line.replace(bugSymbol, '')
+        } else if (line.contains(featureSymbol)) {
+            features << line.replace(featureSymbol, '')
+        }
+    }
+
+    filter(org.apache.tools.ant.filters.ReplaceTokens, tokens: [bugs: bugs.join("\n"), features: features.join("\n")])
 }
 
 tasks.create('releaseNotes') {
