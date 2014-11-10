@@ -5,8 +5,8 @@ import org.junit.Test;
 public class SampleJavaTest {
 
     @Test
-    public void shouldTestSomething() throws Exception {
-
+    public void shouldSayHello() throws Exception {
+        new SampleJava().sayHello("test");
     }
 
 }
