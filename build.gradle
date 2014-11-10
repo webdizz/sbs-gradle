@@ -32,6 +32,7 @@ apply from: file("${rootProject.projectDir}/gradle/releaseNotes.gradle")
 subprojects { project ->
     apply plugin: 'java'
     apply from: file("${rootProject.projectDir}/gradle/integTest.gradle")
+    apply from: file("${rootProject.projectDir}/gradle/coverage.gradle")
 
     task areTestsExist {
         if (file("${projectDir}/src/test/java")
