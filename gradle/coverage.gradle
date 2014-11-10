@@ -14,3 +14,23 @@ jacocoTestReport {
         html.enabled true
     }
 }
+
+task jacocoIntegrationTestReport(type: JacocoReport) {
+    dependsOn integTest
+    sourceSets sourceSets.main
+    executionData integTest
+
+    reports {
+        xml {
+            enabled true
+            destination "$buildDir/reports/jacoco/integTest/jacocoIntegTestReport.xml"
+        }
+        csv.enabled false
+        html {
+            destination "$buildDir/reports/jacoco/integTest/html"
+        }
+    }
+}
+
+check.dependsOn jacocoIntegrationTestReport
+jacocoIntegrationTestReport.mustRunAfter jacocoTestReport
