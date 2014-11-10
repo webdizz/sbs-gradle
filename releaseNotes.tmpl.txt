@@ -1,0 +1,7 @@
+Here is a list of notes regarding the latest release:
+
+Bugs:
+@bugs@
+
+Features:
+@features@
