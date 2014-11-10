@@ -29,8 +29,8 @@ task printParameter {
 
 printParameter.dependsOn 'help'
 
-tasks.addRule('Check correctness of running tests'){ String taskName ->
-    gradle.taskGraph.whenReady{
+tasks.addRule('Check correctness of running tests') { String taskName ->
+    gradle.taskGraph.whenReady {
         Map<String, String> args = gradle.startParameter.systemPropertiesArgs
         gradle.taskGraph.allTasks.each { Task task ->
             if (task.name.contains('integTest') && !args.containsKey('profile')) {
@@ -40,12 +40,14 @@ tasks.addRule('Check correctness of running tests'){ String taskName ->
     }
 }
 
+apply from: file("${rootProject.projectDir}/gradle/releaseNotes.gradle")
+
 subprojects { project ->
     apply plugin: 'java'
     apply from: file("${rootProject.projectDir}/gradle/integTest.gradle")
 
     task areTestsExist {
-        if ([ file("${projectDir}/src/test/java").listFiles() ].isEmpty()) {
+        if ([file("${projectDir}/src/test/java").listFiles()].isEmpty()) {
             println 'Test directory is empty'
         } else {
             println 'Test directory is not empty, will execute tests'
