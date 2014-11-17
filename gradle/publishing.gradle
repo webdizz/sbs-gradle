@@ -1,0 +1,21 @@
+apply plugin: 'maven-publish'
+
+publishing {
+    repositories {
+        maven {
+            url "http://192.168.56.71:8080/artifactory/libs-release-local"
+            credentials {
+                username 'admin'
+                password 'password'
+            }
+        }
+    }
+
+    publications {
+        mavenJava(MavenPublication) {
+            groupId "name.webdizz.${rootProject.name}"
+            version = uploadVersion
+            from components.java
+        }
+    }
+}
