@@ -43,6 +43,10 @@ tasks.addRule('Check correctness of running tests') { String taskName ->
 apply from: file("${rootProject.projectDir}/gradle/releaseNotes.gradle")
 apply from: file("${rootProject.projectDir}/gradle/codeQuality.gradle")
 
+allprojects {
+    apply plugin: PluginsPrinterPlugin
+}
+
 subprojects { project ->
     apply plugin: 'java'
     apply from: file("${rootProject.projectDir}/gradle/integTest.gradle")
