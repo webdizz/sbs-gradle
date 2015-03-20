@@ -17,10 +17,14 @@ docker pull mattgruter/artifactory
 
 docker pull mysql:5.6
 
+usermod -a -G docker vagrant
+
+pip install fig
+
 echo "==> Installing Gradle"
 curl -s get.gvmtool.net | bash
 
-source "${SSH_USER_HOME}/.gvm/bin/gvm-init.sh"
+source "/root/.gvm/bin/gvm-init.sh"
 gvm install gradle 2.2
 gvm d gradle 2.2
 mv /root/.gvm /home/vagrant/
