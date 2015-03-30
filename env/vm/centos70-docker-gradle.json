@@ -66,8 +66,7 @@
         ]
       ],
       "virtualbox_version_file": ".vbox_version",
-      "vm_name": "centos70-docker-gradle",
-      "headless": true
+      "vm_name": "centos70-docker-gradle"
     },
     {
       "boot_command": [
